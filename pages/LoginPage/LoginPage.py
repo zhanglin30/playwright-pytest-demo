@@ -19,7 +19,7 @@ class LoginPage():
         self.username_input.fill(username)
         self.password_input.fill(password)
         self.login_button.click()
-        time.sleep(1000)
+        time.sleep(1)
 
 
 
