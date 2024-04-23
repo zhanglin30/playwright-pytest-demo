@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import time
 
 
 class LoginPage():
@@ -19,7 +19,9 @@ class LoginPage():
         self.username_input.fill(username)
         self.password_input.fill(password)
         self.login_button.click()
-        self.page.wait_for_load_state('domcontentloaded')
+        time.sleep(1000)
+
+
 
 
 
