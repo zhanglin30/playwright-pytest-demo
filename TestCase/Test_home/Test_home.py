@@ -20,3 +20,5 @@ class Test_home_search:
         home_page.navigate()
 
         home_page.search(args["value"])
+    def test_home_change_page(self,page,args):
+        pass
