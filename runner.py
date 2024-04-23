@@ -1,8 +1,11 @@
-import pytest
 import os
+
+import pytest
+
 if __name__ == '__main__':
-    root_dir = os.path.split(os.path.split(__file__)[0])[0]
+    root_dir = os.path.split(__file__)[0]
     AllureReport = root_dir + os.path.sep + "TestReport" + os.path.sep + "AllureReport"
+    print(AllureReport)
     AllureResult = root_dir + os.path.sep + "TestReport" + os.path.sep + "AllureResult"
     Screenshot = root_dir + os.path.sep + "TestReport" + os.path.sep + "Screenshot"
     pytest.main(["-v", "-s", '--reruns=0', f'--alluredir={AllureResult}', "--clean-alluredir"])

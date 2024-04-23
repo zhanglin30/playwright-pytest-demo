@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-from playwright.sync_api import sync_playwright
-import pytest
 import os
+
 import allure
+import pytest
+from playwright.sync_api import sync_playwright
+from slugify import slugify
 
 pageobjest = None
 auth_path = "auth/login.json"
@@ -75,7 +77,7 @@ def auth():
         print("/n结束--》删除认证文件")
 
 
-@pytest.mark.hookwrapper
+@pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     """
     allure报告模版

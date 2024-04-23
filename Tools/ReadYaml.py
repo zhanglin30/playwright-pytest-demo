@@ -6,8 +6,6 @@ Time: 2023/4/17
 Software: PyCharm
 """
 
-import yaml, os
-
 import yaml
 
 
