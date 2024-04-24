@@ -7,6 +7,10 @@
 """
 import allure
 import functools
+import os
+
+import config
+
 
 class AllurePretty(object):
     @classmethod
@@ -18,6 +22,12 @@ class AllurePretty(object):
         allure.dynamic.title(f'{CaseData.get("用例标题")}')
 
     @classmethod
+    def PrettyAllureScreenShot(cls, page, CaseData):
+        filename = os.path.join(config.Screenshot, f"{CaseData.get('用例标题')}.png")
+        page.screenshot(path=filename)
+        allure.attach.file(source=filename, name=CaseData.get('用例标题'), attachment_type=allure.attachment_type.PNG)
+
+    @classmethod
     def PrettyAllureWarpper(cls, func):
         """装饰器函数"""
 
@@ -26,4 +36,5 @@ class AllurePretty(object):
             # 添加用例信息
             cls.PrettyAllureCase(CaseData=kwargs.get("CaseData"))  # 如何获取case_data?
             r = func(*args, **kwargs)  # 运行用例
+            cls.PrettyAllureScreenShot(CaseData=kwargs.get("CaseData"))
         return inner

@@ -6,9 +6,10 @@ import pytest
 from playwright.sync_api import sync_playwright
 from slugify import slugify
 
+import config
+
 pageobjest = None
-auth_path = "auth/login.json"
-base_url = "https://www.leangoo.com"
+
 
 
 @pytest.fixture(scope="session")
@@ -36,17 +37,18 @@ def page():
     """打开页面的基本操作的封装"""
     # 前置操作
     global pageobjest
+    auth_path=config.auth_path
     with sync_playwright() as play:
 
         browser = play.chromium.launch(headless=False,
-                                       executable_path='C:\Program Files\Google\Chrome\Application\chrome.exe')
+                                       executable_path=config.CHROME_PATH)
 
         # 是否存在认证的缓存，如果存在用缓存的文件打开
         if os.path.exists(auth_path):
             print("使用认证文件")
-            context = browser.new_context(base_url=base_url, storage_state=auth_path)
+            context = browser.new_context(base_url=config.base_url, storage_state=auth_path)
         else:
-            context = browser.new_context(base_url=base_url)
+            context = browser.new_context(base_url=config.base_url)
 
         # 判断是否已经存在浏览器上下文
         if pageobjest is None:
@@ -67,7 +69,7 @@ def page():
 
 @pytest.fixture(scope="session", autouse=True)
 def auth():
-    global auth_path
+    auth_path=config.auth_path
     if os.path.exists(auth_path):
         os.remove(auth_path)
         print("/n初始化--》删除认证文件")
