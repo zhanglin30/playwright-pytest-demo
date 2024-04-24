@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import time
 
+import allure
+
 
 class LoginPage():
     def __init__(self,page):
@@ -15,10 +17,12 @@ class LoginPage():
 
     # 登录操作
     def login(self, username,password):
-
-        self.username_input.fill(username)
-        self.password_input.fill(password)
-        self.login_button.click()
+        with allure.step("输入用户名"):
+            self.username_input.fill(username)
+        with allure.step("密码"):
+            self.password_input.fill(password)
+        with allure.step("点击登录"):
+            self.login_button.click()
         time.sleep(1)
 
 
