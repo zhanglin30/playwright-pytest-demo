@@ -33,8 +33,12 @@ class AllurePretty(object):
 
         @functools.wraps(func)
         def inner(*args, **kwargs):
+            flag = True
             # 添加用例信息
             cls.PrettyAllureCase(page=kwargs.get("page"),CaseData=kwargs.get("CaseData"))  # 如何获取case_data?
             r = func(*args, **kwargs)  # 运行用例
-            cls.PrettyAllureScreenShot(page=kwargs.get("page"),CaseData=kwargs.get("CaseData"))
+            cls.PrettyAllureScreenShot(page=kwargs.get("page"))
+            cls.PrettyAllureScreenShot(page=kwargs.get("page"), CaseData=kwargs.get("CaseData"))
+
         return inner
+

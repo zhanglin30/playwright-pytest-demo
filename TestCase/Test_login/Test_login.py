@@ -13,6 +13,7 @@ class Test_login:
     @allure.description('正确的账户密码登录')
     def test_login(self, page):
         login_page = LoginPage(page)
-        #login_page.navigate()
         login_page.login("13003895886", "Zlin@5886.")
+        #page.pause()
+
 

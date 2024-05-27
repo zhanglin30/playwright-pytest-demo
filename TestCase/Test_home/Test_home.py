@@ -23,3 +23,9 @@ class Test_home_search:
         home_page = HomePage(page)
         #home_page.navigate()
         home_page.search(CaseData["value"])
+
+    @pytest.mark.run(order=1)
+    @AllurePretty.PrettyAllureWarpper
+    def test_home2kanban_cilck(self, page):
+        home_page = HomePage(page)
+        home_page.home2kanban_cilck("zl测试ui自动化看板")

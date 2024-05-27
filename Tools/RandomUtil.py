@@ -12,7 +12,7 @@ import string
 import sys
 import time
 
-sys.setdefaultencoding('utf-8')
+#sys.setdefaultencoding('utf-8')
 
 class RandomUtil:
     # 1 姓氏（所有姓氏）
