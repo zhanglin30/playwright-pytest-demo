@@ -21,5 +21,5 @@ class Test_home_search:
         #AllurePretty().PrettyAllureCase(args)
         #allure.dynamic.title('搜索：'+args["value"])
         home_page = HomePage(page)
-        home_page.navigate()
+        #home_page.navigate()
         home_page.search(CaseData["value"])

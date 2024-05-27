@@ -14,7 +14,7 @@ import config
 
 class AllurePretty(object):
     @classmethod
-    def PrettyAllureCase(cls,CaseData):
+    def PrettyAllureCase(cls,page,CaseData):
 
         allure.dynamic.feature(CaseData.get("模块"))
         allure.dynamic.story(CaseData.get("功能"))
@@ -34,7 +34,7 @@ class AllurePretty(object):
         @functools.wraps(func)
         def inner(*args, **kwargs):
             # 添加用例信息
-            cls.PrettyAllureCase(CaseData=kwargs.get("CaseData"))  # 如何获取case_data?
+            cls.PrettyAllureCase(page=kwargs.get("page"),CaseData=kwargs.get("CaseData"))  # 如何获取case_data?
             r = func(*args, **kwargs)  # 运行用例
-            cls.PrettyAllureScreenShot(CaseData=kwargs.get("CaseData"))
+            cls.PrettyAllureScreenShot(page=kwargs.get("page"),CaseData=kwargs.get("CaseData"))
         return inner

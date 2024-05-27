@@ -68,16 +68,16 @@ def page():
         browser.close()
 
 
-# @pytest.fixture(scope="session", autouse=True)
-# def auth():
-#     auth_path=config.auth_path
-#     # if os.path.exists(auth_path):
-#     #     os.remove(auth_path)
-#     #     print("初始化--》删除认证文件")
-#     # yield
-#     # if os.path.exists(auth_path):
-#     #     os.remove(auth_path)
-#     #     print("结束--》删除认证文件")
+@pytest.fixture(scope="session", autouse=True)
+def auth():
+    auth_path=config.auth_path
+    if os.path.exists(auth_path):
+        os.remove(auth_path)
+        print("初始化--》删除认证文件")
+    yield
+    # if os.path.exists(auth_path):
+    #     os.remove(auth_path)
+    #     print("结束--》删除认证文件")
 
 
 @pytest.hookimpl(hookwrapper=True)
