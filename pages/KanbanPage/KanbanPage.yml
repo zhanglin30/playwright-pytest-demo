@@ -1,0 +1,10 @@
+
+elements:
+  - name: add_task_button
+    selector: ".list-add-card-btn"
+  - name: new_input
+    selector: "[placeholder='Enter提交，Shift+Enter换行']"
+  - name: add_button
+    selector: "[type='submit'][test_id='添加']"
+
+
